@@ -47,8 +47,37 @@
                 <span class="cart_count">{{$store.getters.optCartCount}}</span>
             </router-link>
             <span class="addCart-btn" @click="addCart">加入购物车</span>
-            <span class="buy">立即购买</span>
+            <span class="buy" @click="buy">立即购买</span>
         </div>
+
+
+
+    <!-- 立即购买浮层 -->
+    <div class="details_purchase" v-if="isShow">
+        <div class="close_box">
+             <span class="top_close" @click="close">x</span>
+        </div>
+        <div class="product_box">
+            <img src="../../public/img/banner1.png">
+            <span class="product_price">¥6299.00</span>
+        </div>
+        <div class="product_model">
+            <span>颜色</span>
+            <div class="items">
+                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
+                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
+                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
+                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="sub_btn">确定</div>
+    </div>
+
+
+
+
+
     </div>    
 </template>
 
@@ -63,7 +92,8 @@ export default {
                 price:0,
                 title:""
             },
-            specs:[]
+            specs:[],
+            isShow:false
         }
     },
     created(){
@@ -91,6 +121,12 @@ export default {
                         Toast("添加成功");
                     }
                 })
+        },
+        buy(){//立即购买
+            this.isShow = true;
+        },
+        close(){//关闭
+            this.isShow = false;
         }
     }
 }
@@ -163,13 +199,94 @@ export default {
     position: absolute;
     background-color: red;
     color: #fff;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     text-align: center;
-    line-height: 24px;
+    line-height: 20px;
     left: 20px;
     top: 2px;
+}
+
+/* 立即购买 */
+.details_purchase{
+    width: 100%;
+    background-color: #fff;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+}
+.details_purchase .close_box{
+    width: 100%;
+    text-align: right;
+    margin-bottom: 2px;
+}
+.details_purchase .top_close{
+    display: inline-block;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    line-height: 18px;
+    background-color: #26a2ff;
+    border-radius: 10px;
+    color: rgb(245, 245, 245);
+}
+.details_purchase .product_box{
+    width: 100%;
+    display: flex;
+    justify-content: left;
+}
+.details_purchase .product_box img{
+    width: 120px;
+    margin-right: 10px;
+}
+.details_purchase .product_box span{
+    font-size: 20px;
+    color: red;
+    display: flex;
+    align-items: flex-end;
+}
+.details_purchase .product_model{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.details_purchase .product_model span{
+    color: balck;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.details_purchase .product_model .items{
+    display: flex;
+    justify-content:left;
+    flex-wrap: wrap;
+}
+.details_purchase .product_model .item{
+    background-color: #f2f2f2;
+    padding: 2px 10px;
+    border-radius: 50px;
+    color: #000;
+}
+.details_purchase .line{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(244, 244, 244);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.details_purchase .sub_btn{
+    width: 100%;
+    height: 40px;
+    background-color: #26a2ff;
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
 }
 </style>
 

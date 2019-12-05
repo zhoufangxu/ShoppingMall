@@ -105,4 +105,10 @@ import {Toast} from 'mint-ui';
 .app-container .mui-bar-tab .router-link-active{
   color: #007aff;
 }
+.mui-icon .mui-badge{
+  width: 18px;
+  height: 18px;
+  text-align: center;
+  line-height: 18px;
+}
 </style>
