@@ -15,7 +15,7 @@
                 <img :src="'http://127.0.0.1:3000/' + item.md">
             </mt-swipe-item>
         </mt-swipe>
-        
+       
         
         <div class="mui-card">
 				<div class="mui-card-header">
@@ -58,26 +58,21 @@
              <span class="top_close" @click="close">x</span>
         </div>
         <div class="product_box">
-            <img src="../../public/img/banner1.png">
-            <span class="product_price">¥6299.00</span>
+            <img :src=" 'http://127.0.0.1:3000/' + this.pics[0].md ">
+            <div class="product_price">
+               <span>¥{{this.product.price.toFixed(2)}}</span> 
+               <p>{{this.product.lname}}</p>
+            </div>
         </div>
         <div class="product_model">
             <span>颜色</span>
             <div class="items">
-                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
-                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
-                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
-                <p class="item">Air14|十代|i5 12G 512G MX250</p> 
+                <router-link class="item" v-for="(item,i) of specs" :key="i" :class="`${item.lid==lid?'active':''}`" :to="`/detalis?pid=${item.lid}`">{{item.spec}}</router-link> 
             </div>
         </div>
         <div class="line"></div>
-        <div class="sub_btn">确定</div>
+        <div class="sub_btn" @click="goPay">确定</div>
     </div>
-
-
-
-
-
     </div>    
 </template>
 
@@ -100,9 +95,11 @@ export default {
         this.getDetalis();
     },
     methods:{
+        goPay(){
+            this.$router.push("/pay");
+        },
         getDetalis(){
             this.axios.get("http://127.0.0.1:3000/detalis?lid="+this.lid).then(res=>{
-                console.log(res.data);
                 this.pics = res.data.pics;
                 this.product = res.data.product;
                 this.specs = res.data.specs;
@@ -124,6 +121,9 @@ export default {
         },
         buy(){//立即购买
             this.isShow = true;
+            console.log(this.pics);
+            console.log(this.product);
+            console.log(this.specs);
         },
         close(){//关闭
             this.isShow = false;
@@ -220,6 +220,7 @@ export default {
     position: fixed;
     bottom: 0;
     z-index: 999;
+    box-shadow: 0px -10px 30px #dadada;
 }
 .details_purchase .close_box{
     width: 100%;
@@ -243,18 +244,24 @@ export default {
 }
 .details_purchase .product_box img{
     width: 120px;
-    margin-right: 10px;
+    margin-right: 16px;
+}
+.details_purchase .product_box .product_price{
+    display: flex;
+    justify-content:flex-end;
+    flex-direction: column;
+    align-items: flex-start; 
 }
 .details_purchase .product_box span{
     font-size: 20px;
     color: red;
-    display: flex;
-    align-items: flex-end;
 }
 .details_purchase .product_model{
+    border-top: 1px solid rgb(244, 244, 244);
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+    padding-top:10px;
 }
 .details_purchase .product_model span{
     color: balck;
@@ -271,6 +278,11 @@ export default {
     padding: 2px 10px;
     border-radius: 50px;
     color: #000;
+    margin: 5px 0;
+}
+.details_purchase .product_model .active{
+    background-color: red;
+    color: #fff;
 }
 .details_purchase .line{
     width: 100%;

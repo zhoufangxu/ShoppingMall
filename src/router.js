@@ -10,6 +10,7 @@ import user from './components/login/user.vue'
 import cart from './components/cart/cart.vue'
 import search_list from './components/search/search_pro_list.vue'
 import cartLogin  from './components/cart/cartLogin.vue'
+import pay from './components/order/payment.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -23,6 +24,7 @@ export default new Router({
     {path:"/user",component:user},
     {path:"/cart",component:cart},
     {path:"/search_list",component:search_list},
-    {path:"/cartLogin",component:cartLogin}
+    {path:"/cartLogin",component:cartLogin},
+    {path:"/pay",component:pay}
   ]
 })
