@@ -58,16 +58,16 @@
              <span class="top_close" @click="close">x</span>
         </div>
         <div class="product_box">
-            <img :src=" 'http://127.0.0.1:3000/' + this.pics[0].md ">
+            <img :src=" 'http://127.0.0.1:3000/' + pics[0].md ">
             <div class="product_price">
-               <span>¥{{this.product.price.toFixed(2)}}</span> 
-               <p>{{this.product.lname}}</p>
+               <span>¥{{product.price.toFixed(2)}}</span> 
+               <p>已选:{{model}}</p>
             </div>
         </div>
         <div class="product_model">
             <span>颜色</span>
             <div class="items">
-                <router-link class="item" v-for="(item,i) of specs" :key="i" :class="`${item.lid==lid?'active':''}`" :to="`/detalis?pid=${item.lid}`">{{item.spec}}</router-link> 
+                <router-link class="item" :data-spec="item.spec" v-for="(item,i) of specs" :key="i" :class="`${item.lid==lid?'active':''}`" :to="`/detalis?pid=${item.lid}`" @click.native="change">{{item.spec}}</router-link> 
             </div>
         </div>
         <div class="line"></div>
@@ -88,7 +88,8 @@ export default {
                 title:""
             },
             specs:[],
-            isShow:false
+            isShow:false,
+            model:""
         }
     },
     created(){
@@ -96,13 +97,19 @@ export default {
     },
     methods:{
         goPay(){
-            this.$router.push("/pay");
+            this.$router.push("/pay?lid="+this.lid);
         },
         getDetalis(){
             this.axios.get("http://127.0.0.1:3000/detalis?lid="+this.lid).then(res=>{
                 this.pics = res.data.pics;
                 this.product = res.data.product;
                 this.specs = res.data.specs;
+                //循环specs中lid等于 data中lia的规格信息，赋值给model 
+                for(var item of res.data.specs){
+                    if(item.lid == this.lid){
+                        this.model =item.spec ;
+                    }
+                }
             })
         },
         addCart(){
@@ -127,6 +134,15 @@ export default {
         },
         close(){//关闭
             this.isShow = false;
+        },
+        change(e){ //规格列表修改
+            this.model = e.target.dataset.spec;
+        }
+    },
+    watch:{
+        $route(e){
+            this.lid = e.query.pid;  //获取当前地址栏中pid值，修改data中lid
+            this.getDetalis();  //在次更新详情页
         }
     }
 }

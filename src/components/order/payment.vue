@@ -55,6 +55,9 @@ export default {
         goBack(){
             history.go(-1);
         }
+    },
+    created(){
+        console.log(this.$route.query.lid)
     }
 }
 </script>
