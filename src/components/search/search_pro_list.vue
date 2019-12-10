@@ -15,7 +15,7 @@
         <div class="pro-list">
             <ul>
                 <li v-for="(item,i) of list" :key="i">
-                    <router-link to="/detalis" class="list-item">
+                    <router-link :to="`/detalis?pid=${item.lid}`" class="list-item">
                         <img src="http://127.0.0.1:3000/img/iphonex.jpg">
                         <div class="item-detalis">
                             <p class="item-title">{{item.lname}}</p>
