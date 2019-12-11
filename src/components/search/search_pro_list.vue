@@ -15,7 +15,7 @@
         <div class="pro-list">
             <ul>
                 <li v-for="(item,i) of list" :key="i">
-                    <router-link to="/detalis" class="list-item">
+                    <router-link :to="`/detalis?pid=${item.lid}`" class="list-item">
                         <img src="http://127.0.0.1:3000/img/iphonex.jpg">
                         <div class="item-detalis">
                             <p class="item-title">{{item.lname}}</p>
@@ -53,6 +53,7 @@ export default {
         getList(){
             this.pno++;
             this.axios.get("http://127.0.0.1:3000/search?key="+this.key+"&&pno="+this.pno+"&&pageSize="+this.pageSize).then(res=>{
+                console.log(res.data.data);
             this.list = res.data.data;
                this.pno = 0;
             })
