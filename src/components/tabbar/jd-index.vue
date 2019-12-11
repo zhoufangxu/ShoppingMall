@@ -357,7 +357,7 @@ export default {
     },
     methods:{
         goFenlei(){
-            this.$router.push("/fenlei/hot");
+            this.$router.push("/fenlei");
         },
         goUser(){
             this.$router.push("/user");

@@ -7,7 +7,7 @@
             </router-link>
             <div class="search">
                 <span></span>
-                <input type="text" placeholder="华为笔记本" v-model="key">
+                <input type="text" placeholder="华为笔记本" v-model="key" @click="goFenlei">
             </div>
             <span class="search-text" @click="search">搜索</span>
         </div>
@@ -35,6 +35,9 @@ export default {
                 this.$router.push("/search_list");
                
             })
+        },
+        goFenlei(){
+            this.$router.push("/search");
         }
     }
 }
