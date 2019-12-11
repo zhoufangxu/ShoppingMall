@@ -32,50 +32,50 @@
             <ul>
                 <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/1.webp">
+                        <span>超市</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/2.webp">
+                        <span>生鲜</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/3.webp">
+                        <span>省钱</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/4.webp">
+                        <span>充值</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/5.webp">
+                        <span>拼单</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/6.webp">
+                        <span>电器</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/7.webp">
+                        <span>服装</span>
                     </a>
                 </li>
                  <li>
                     <a>
-                        <img src="../../img/menu1.png">
-                        <span>数码电器</span>
+                        <img src="../../img/icon/8.webp">
+                        <span>领券</span>
                     </a>
                 </li>
             </ul>
@@ -99,43 +99,52 @@
                 </div>
             </div>
             <div class="Seckill-bottom">
-                <ul>
-                    <li>
-                        <router-link to="#">
-                            <img src="http://127.0.0.1:3000/img/iphone.jpg">
-                            <b>¥3399</b>
-                            <span>¥3699</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="#">
-                            <img src="http://127.0.0.1:3000/img/iphonex.jpg">
-                            <b>¥6799</b>
-                            <span>¥6999</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="#">
-                            <img src="http://127.0.0.1:3000/img/erji.jpg">
-                            <b>¥1099</b>
-                            <span>¥1299</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="#">
-                            <img src="http://127.0.0.1:3000/img/xj.jpg">
-                            <b>¥4299</b>
-                            <span>¥4599</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link to="#">
-                            <img src="http://127.0.0.1:3000/img/watch.jpg">
-                            <b>¥2699</b>
-                            <span>¥2999</span>
-                        </router-link>
-                    </li>
-                </ul>
+                <v-touch v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" tag="div">
+                    <ul>
+                        <li>
+                            <router-link to="#" class="Seckill-item">
+                                <img src="http://127.0.0.1:3000/img/iphone.jpg">
+                                <b>¥3399</b>
+                                <span>¥3699</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="#" class="Seckill-item">
+                                <img src="http://127.0.0.1:3000/img/iphonex.jpg">
+                                <b>¥6799</b>
+                                <span>¥6999</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="#" class="Seckill-item">
+                                <img src="http://127.0.0.1:3000/img/erji.jpg">
+                                <b>¥1099</b>
+                                <span>¥1299</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="#" class="Seckill-item">
+                                <img src="http://127.0.0.1:3000/img/xj.jpg">
+                                <b>¥4299</b>
+                                <span>¥4599</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="#" class="Seckill-item">
+                                <img src="http://127.0.0.1:3000/img/watch.jpg">
+                                <b>¥2699</b>
+                                <span>¥2999</span>
+                            </router-link>
+                        </li>
+                        <li>
+                            <router-link to="#" class="Seckill-item">
+                                <img src="http://127.0.0.1:3000/img/watch.jpg">
+                                <b>¥2699</b>
+                                <span>¥2999</span>
+                            </router-link>
+                        </li>
+                    </ul>
+                </v-touch>
             </div>
         </div>
 
@@ -356,6 +365,12 @@ export default {
         this.isLogin();
     },
     methods:{
+        onSwipeLeft(e){ //秒杀左滑
+            console.log(e)
+        },
+        onSwipeRight(e){ //秒杀右滑
+            console.log(e)
+        },
         goFenlei(){
             this.$router.push("/fenlei");
         },
@@ -516,7 +531,6 @@ a{
 }
 .lattice ul li img{
     width: 60px;
-    margin-bottom: 5px;
     display: inline-block;
 }
 
@@ -563,29 +577,33 @@ a{
     font-weight: bold;
     color: #26a2ff;
 }
+.Seckill .Seckill-bottom{
+    overflow: hidden;
+    width: 100%;
+}
 .Seckill .Seckill-bottom ul{
+    width: 516px;
     display: flex;
-    justify-content: space-around;
-    
+    justify-content: start;
 }
 .Seckill .Seckill-bottom li{
-    width: 25%;
+    width: 86px;
 }
-.Seckill .Seckill-bottom li a{
+.Seckill .Seckill-bottom li .Seckill-item{
     display: flex;
     flex-direction: column;
     width: 100%;
     text-align: center;
 }
-.Seckill .Seckill-bottom li a img{
-    width: 66px;
+.Seckill .Seckill-bottom li .Seckill-item img{
+    width: 100%;
     margin-bottom: 6px;
 }
-.Seckill .Seckill-bottom li a b{
+.Seckill .Seckill-bottom li .Seckill-item b{
     font-size: 18px;
     color: red;
 }
-.Seckill .Seckill-bottom li a span{
+.Seckill .Seckill-bottom li .Seckill-item span{
     color: rgb(140, 140, 140);
     text-decoration: line-through;
 }

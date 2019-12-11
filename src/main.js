@@ -47,6 +47,13 @@ var store = new Vuex.Store({
 })
 
 
+//引入滑动
+
+import VueTouch from 'vue-touch'
+Vue.use(VueTouch, { name: 'v-touch' })
+VueTouch.config.swipe = {
+  threshold: 100 //手指左右滑动距离
+}
 
 
 import axios from 'axios'
